@@ -2,7 +2,7 @@
 
 ## Description
 
-The aim of this project is to create a sample `RESTful` service using `Jersey`. It's a JavaEE web application that can be packaged as `WAR` and deployed on any servlet container of your choice. I've used `Apache Tomcat` here.
+The aim of this project is to create a simple `RESTful` service using `Jersey`. It's a JavaEE web application that can be packaged as `WAR` and deployed on any servlet container of your choice. I've used `Apache Tomcat` here.
 
 ## Structure
 
