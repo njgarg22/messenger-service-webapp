@@ -8,9 +8,8 @@ The aim of this project is to create a simple `RESTful` service using `Jersey`. 
 
 1. As per standard `Maven` project structure, source code is present at `src/main/java`. 
 1. All the web application files are present at `src/main/webapp` and the standard Java EE web application `web.xml` deployment descriptor can be found at `src/main/webapp/WEB-INF`.
+1. http://localhost:8080/messenger-service-webapp/ served by `src/main/webapp/index.jsp`.
 
 ## Resources
-
-1. http://localhost:8080/messenger-service-webapp/ served by `webapp/index.jsp`.
 
 1. Resource Endpoint accesible at http://localhost:8080/messenger-service-webapp/webapi/myresource
