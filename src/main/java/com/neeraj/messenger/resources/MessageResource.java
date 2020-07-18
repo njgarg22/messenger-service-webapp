@@ -1,4 +1,4 @@
-package com.neeraj.resources;
+package com.neeraj.messenger.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
