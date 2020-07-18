@@ -1,3 +1,5 @@
 # messenger-service-webapp
 
-Resource Endpoint: http://localhost:8080/messenger-service-webapp/webapi/myresource
+1. http://localhost:8080/messenger-service-webapp/ served by `webapp/index.jsp`.
+
+1. Resource Endpoint accesible at http://localhost:8080/messenger-service-webapp/webapi/myresource
