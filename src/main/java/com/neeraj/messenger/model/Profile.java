@@ -2,9 +2,9 @@ package com.neeraj.messenger.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+//@XmlRootElement
 public class Profile {
 	
 	private long id;
