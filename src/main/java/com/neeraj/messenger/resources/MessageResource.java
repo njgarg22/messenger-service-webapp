@@ -19,37 +19,38 @@ import com.neeraj.messenger.service.MessageService;
  * Implementation of a simple JAX-RS resource.
  * A JAX-RS resource is an annotated POJO that provides so-called resource methods 
  * Those methods are able to handle HTTP requests for URI paths that the resource is bound to.
- * Root resource (exposed at "myresource" path)
+ * Instead of adding `@Produces` or `@Consumes` annotation on each method, just annotate it on the class itself.
+ * 
+ * Root resource (exposed at "messages" path)
  */
 @Path("/messages")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 	
-	// Jersey creates a new instance of the MessageResource for every request. 
-	// So, the MessageService reference is instantiated time and time again.
+	/**
+	 * Jersey creates a new instance of the MessageResource for every request. 
+	 * So, the MessageService reference is instantiated time and time again.
+	 */
 	MessageService messageService = new MessageService();
 	
     /**
      * Method handling HTTP GET requests. 
      * The returned object will be sent to the client as "application/json" media type.
      *
-     * @return String that will be returned as a application/json response.
+     * @return Message that will be returned as a application/json response.
      */	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
 	}
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message addMessage(Message message) {
 		return messageService.addMessage(message);
 	}
 	
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{messageId}")
 	public Message updateMessage(@PathParam("messageId") long id, Message message) {
 		message.setId(id);
@@ -57,7 +58,6 @@ public class MessageResource {
 	}
 	
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{messageId}")
 	public Message deleteMessage(@PathParam("messageId") long id) {
 		return messageService.removeMessage(id);
@@ -65,7 +65,6 @@ public class MessageResource {
 	
 	@GET
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message getMessage(@PathParam("messageId") long id) {
 		return messageService.getMessage(id);
 	}
