@@ -11,9 +11,6 @@ public class MessageService {
 	
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
 	
-	public MessageService() {
-	}
-	
 	public List<Message> getAllMessages(){
 		// Passing the collection directly to the ArrayList constructor to initialize the list with those elements 
 		return new ArrayList<>(messages.values());

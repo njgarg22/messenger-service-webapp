@@ -59,8 +59,8 @@ public class MessageResource {
 	
 	@DELETE
 	@Path("/{messageId}")
-	public Message deleteMessage(@PathParam("messageId") long id) {
-		return messageService.removeMessage(id);
+	public void deleteMessage(@PathParam("messageId") long id) {
+		messageService.removeMessage(id);
 	}
 	
 	@GET
