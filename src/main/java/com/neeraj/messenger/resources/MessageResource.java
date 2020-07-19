@@ -30,14 +30,14 @@ public class MessageResource {
      * @return String that will be returned as a text/plain response.
      */	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
 	}
 	
 	@GET
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Message getMessage(@PathParam("messageId") long id) {
 		return messageService.getMessage(id);
 	}
