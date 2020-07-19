@@ -4,6 +4,17 @@
 
 The aim of this project is to create a simple `RESTful` service using `Jersey`. It's a JavaEE web application that can be packaged as `WAR` and deployed on any servlet container of your choice (Though I've used `Apache Tomcat`).
 
+## Object Model
+
+In our object model, we will be interacting with `Messages` & `Profiles`. These will be our top-level resources. Following is a list of URIs that will be exposed in our system:
+
+```
+/messages
+/messages/{id}
+/profiles
+/profiles/{id}
+```
+
 ## Structure
 
 1. As per standard `Maven` project structure, source code is present at `src/main/java`. 
