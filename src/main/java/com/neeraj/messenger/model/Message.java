@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+// The @XmlRootElement annotation maps a class to an XML element. 
+// At least one element definition is needed for each top-level Java type used for unmarshalling and marshalling. 
+// If there is no element definition, there is no starting location for XML content processing.
 @XmlRootElement
 public class Message {
 	private long id;
