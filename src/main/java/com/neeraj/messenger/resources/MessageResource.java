@@ -34,12 +34,12 @@ public class MessageResource {
 	 */
 	MessageService messageService = new MessageService();
 	
-    /**
-     * Method handling HTTP GET requests. 
-     * The returned object will be sent to the client as "application/json" media type.
-     *
-     * @return Message that will be returned as a application/json response.
-     */	
+	/**
+	 * Method handling HTTP GET requests. 
+	 * The returned object will be sent to the client as "application/json" media type.
+	 * 
+	 * @return Message that will be returned as a application/json response.
+	 */
 	@GET
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
