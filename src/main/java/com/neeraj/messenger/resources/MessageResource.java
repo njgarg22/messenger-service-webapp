@@ -3,6 +3,7 @@ package com.neeraj.messenger.resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -18,12 +19,13 @@ import com.neeraj.messenger.service.MessageService;
  * Implementation of a simple JAX-RS resource.
  * A JAX-RS resource is an annotated POJO that provides so-called resource methods 
  * Those methods are able to handle HTTP requests for URI paths that the resource is bound to.
- * 
  * Root resource (exposed at "myresource" path)
  */
 @Path("/messages")
 public class MessageResource {
 	
+	// Jersey creates a new instance of the MessageResource for every request. 
+	// So, the MessageService reference is instantiated time and time again.
 	MessageService messageService = new MessageService();
 	
     /**
@@ -52,6 +54,13 @@ public class MessageResource {
 	public Message updateMessage(@PathParam("messageId") long id, Message message) {
 		message.setId(id);
 		return messageService.updateMessage(message);
+	}
+	
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{messageId}")
+	public Message deleteMessage(@PathParam("messageId") long id) {
+		return messageService.removeMessage(id);
 	}
 	
 	@GET
