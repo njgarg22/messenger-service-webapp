@@ -2,7 +2,9 @@ package com.neeraj.messenger.resources;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,14 +27,21 @@ public class MessageResource {
 	
     /**
      * Method handling HTTP GET requests. 
-     * The returned object will be sent to the client as "text/plain" media type.
+     * The returned object will be sent to the client as "application/json" media type.
      *
-     * @return String that will be returned as a text/plain response.
+     * @return String that will be returned as a application/json response.
      */	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message addMessage(Message message) {
+		return messageService.addMessage(message);
 	}
 	
 	@GET
