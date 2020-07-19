@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.neeraj.messenger.model.Message;
@@ -41,7 +42,14 @@ public class MessageResource {
 	 * @return Message that will be returned as a application/json response.
 	 */
 	@GET
-	public List<Message> getMessages() {
+	public List<Message> getMessages(@QueryParam("year") int year, @QueryParam("start") int start, @QueryParam("size") int size) {
+		if(year > 0) {
+			return messageService.getAllMessagesForYear(year);
+		}
+		
+		if(start >=0 && size > 0) {
+			return messageService.getAllMessagesPaginated(start, size);
+		}
 		return messageService.getAllMessages();
 	}
 	
