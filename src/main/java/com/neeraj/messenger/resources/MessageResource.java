@@ -1,5 +1,6 @@
 package com.neeraj.messenger.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,7 +12,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import com.neeraj.messenger.model.Message;
 import com.neeraj.messenger.service.MessageService;
@@ -54,8 +58,13 @@ public class MessageResource {
 	}
 	
 	@POST
-	public Message addMessage(Message message) {
-		return messageService.addMessage(message);
+	public Response addMessage(Message message, @Context UriInfo uriInfo) {
+		Message newMsg = messageService.addMessage(message);
+		String newId = String.valueOf(newMsg.getId());
+		URI uri = uriInfo.getAbsolutePathBuilder().path(newId).build();
+		return Response.created(uri)
+				.entity(newMsg)
+				.build();
 	}
 	
 	@PUT
