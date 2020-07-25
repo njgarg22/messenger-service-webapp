@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.neeraj.messenger.database.DatabaseClass;
+import com.neeraj.messenger.exception.DataNotFoundException;
 import com.neeraj.messenger.model.Message;
 
 public class MessageService {
@@ -36,7 +37,11 @@ public class MessageService {
 	}
 	
 	public Message getMessage(long id) {
-		return messages.get(id);
+		Message msg = messages.get(id);
+		if(msg == null) {
+			throw new DataNotFoundException("Message with id " + id + " not found");
+		}
+		return msg;
 	}
 	
 	public Message addMessage(Message message) {
