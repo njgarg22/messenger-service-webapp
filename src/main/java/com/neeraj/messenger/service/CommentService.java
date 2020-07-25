@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 import com.neeraj.messenger.database.DatabaseClass;
 import com.neeraj.messenger.model.Comment;
+import com.neeraj.messenger.model.ErrorMessage;
 import com.neeraj.messenger.model.Message;
 
 public class CommentService {
@@ -17,8 +23,26 @@ public class CommentService {
 	}
 	
 	public Comment getComment(long messageId, long commentId) {
-		Map<Long, Comment> comments = messages.get(messageId).getComments();
-		return comments.get(commentId);
+		ErrorMessage errorMsg = new ErrorMessage("Not Found", 404, "https://www.neeraj.com");
+		Response response = Response
+				.status(Status.NOT_FOUND)
+				.entity(errorMsg)
+				.build();
+		
+		Message msg = messages.get(messageId);
+		if(msg == null) {
+			throw new WebApplicationException(response);
+		}
+		
+		Map<Long, Comment> comments = msg.getComments();
+		Comment comment = comments.get(commentId);
+		if(comment == null) {
+			// `NotFoundException` is subclass of `WebApplicationException`.
+			// We don't need to set the status code for `NotFoundException`.
+			throw new NotFoundException(response);
+		}
+		
+		return comment;
 	}
 	
 	public Comment addComment(long messageId, Comment comment) {

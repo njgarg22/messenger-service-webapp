@@ -3,11 +3,12 @@ package com.neeraj.messenger.exception;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 
 import com.neeraj.messenger.model.ErrorMessage;
 
-@Provider
+/**
+ * As @Provider annotation is not added on this class, it's doesn't do anything.
+ */
 public class GenericExceptionMapper implements ExceptionMapper<Throwable>{
 
 	@Override
