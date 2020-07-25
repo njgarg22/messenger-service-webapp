@@ -14,9 +14,9 @@ public class DataNotFoundExceptionMapper implements ExceptionMapper<DataNotFound
 	public Response toResponse(DataNotFoundException exception) {
 		ErrorMessage errorMssg = new ErrorMessage(exception.getMessage(), 404, "https://www.neeraj.com");
 		return Response
-				.status(Status.NOT_FOUND)
-				.entity(errorMssg)
-				.build();
+			.status(Status.NOT_FOUND)
+			.entity(errorMssg)
+			.build();
 	}
 
 }
