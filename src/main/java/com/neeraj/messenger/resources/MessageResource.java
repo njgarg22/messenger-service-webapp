@@ -26,6 +26,10 @@ import com.neeraj.messenger.service.MessageService;
  * Those methods are able to handle HTTP requests for URI paths that the resource is bound to.
  * Instead of adding `@Produces` or `@Consumes` annotation on each method, just annotate it on the class itself.
  * 
+ * At server side, an incoming request may have an entity attached to it. 
+ * To determine it’s type, server uses the HTTP request header `Content-Type`. Ex: "Content-Type: application/json"
+ * Similarly, to determine what type of representation is desired at client side, HTTP header `ACCEPT` is used. Ex: "Accept: application/json"
+ * 
  * Root resource (exposed at "messages" path)
  */
 @Path("/messages")
