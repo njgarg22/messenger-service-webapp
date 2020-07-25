@@ -84,15 +84,26 @@ public class MessageResource {
 	@Path("/{messageId}")
 	public Message getMessage(@PathParam("messageId") long id, @Context UriInfo uriInfo) {
 		Message msg = messageService.getMessage(id);
-		msg.addLink(getUriForSelf(id, uriInfo), "self");
+		msg.addLink(getUriForSelf(msg, uriInfo), "self");
+		msg.addLink(getUriForProfile(msg, uriInfo), "profile");
 		return msg;
 	}
 
-	private String getUriForSelf(long id, UriInfo uriInfo) {
+	private String getUriForSelf(Message msg, UriInfo uriInfo) {
 		String url = uriInfo
 				.getBaseUriBuilder()		//http://localhost:8080/messenger-service-webapp/webapi/
 				.path(MessageResource.class)//														/messages
-				.path(String.valueOf(id))	//															/{messageId}
+				.path(String.valueOf(msg.getId()))	//												  /{messageId}
+				.build()
+				.toString();
+		return url;
+	}
+	
+	private String getUriForProfile(Message msg, UriInfo uriInfo) {
+		String url = uriInfo
+				.getBaseUriBuilder()		//http://localhost:8080/messenger-service-webapp/webapi/
+				.path(ProfileResource.class)//														/profiles
+				.path(msg.getAuthor())		//															  /{profileName}
 				.build()
 				.toString();
 		return url;

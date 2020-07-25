@@ -13,8 +13,8 @@ public class DatabaseClass {
 	private static Map<String, Profile> profiles = new HashMap<>();
 	
 	static {
-		messages.put(1L, new Message(1, "Hello World!", "Neeraj"));
-		messages.put(2L, new Message(2, "Hello Jersey", "Neeraj"));
+		messages.put(1L, new Message(1, "Hello World!", "njgarg22"));
+		messages.put(2L, new Message(2, "Hello Jersey", "njgarg22"));
 		
 		profiles.put("njgarg22", new Profile(1L, "njgarg22", "Neeraj", "Garg"));
 	}
