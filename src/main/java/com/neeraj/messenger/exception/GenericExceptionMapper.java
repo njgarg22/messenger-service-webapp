@@ -15,9 +15,9 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable>{
 	public Response toResponse(Throwable exception) {
 		ErrorMessage errorMsg = new ErrorMessage(exception.getMessage(), 500, "https://www.neeraj.com");
 		return Response
-				.status(Status.INTERNAL_SERVER_ERROR)
-				.entity(errorMsg)
-				.build();
+			.status(Status.INTERNAL_SERVER_ERROR)
+			.entity(errorMsg)
+			.build();
 	}
 
 }
