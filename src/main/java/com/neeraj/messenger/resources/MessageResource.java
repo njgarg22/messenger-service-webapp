@@ -97,8 +97,8 @@ public class MessageResource {
 	private String getUriForSelf(Message msg, UriInfo uriInfo) {
 		String url = uriInfo
 				.getBaseUriBuilder()		//http://localhost:8080/messenger-service-webapp/webapi/
-				.path(MessageResource.class)//														/messages
-				.path(String.valueOf(msg.getId()))	//												  /{messageId}
+				.path(MessageResource.class)//							  /messages
+				.path(String.valueOf(msg.getId()))	//					   /{messageId}
 				.build()
 				.toString();
 		return url;
@@ -107,8 +107,8 @@ public class MessageResource {
 	private String getUriForProfile(Message msg, UriInfo uriInfo) {
 		String url = uriInfo
 				.getBaseUriBuilder()		//http://localhost:8080/messenger-service-webapp/webapi/
-				.path(ProfileResource.class)//														/profiles
-				.path(msg.getAuthor())		//															  /{profileName}
+				.path(ProfileResource.class)//							  /profiles
+				.path(msg.getAuthor())		//						   /{profileName}
 				.build()
 				.toString();
 		return url;
@@ -117,8 +117,8 @@ public class MessageResource {
 	private String getUriForComments(Message msg, UriInfo uriInfo) {
 		String url = uriInfo
 				.getBaseUriBuilder()		//http://localhost:8080/messenger-service-webapp/webapi/
-				.path(MessageResource.class)//														/messages
-				.path(MessageResource.class, "getCommentsResource")//								  /{messageId}/comments
+				.path(MessageResource.class)//							/messages
+				.path(MessageResource.class, "getCommentsResource")//				/{messageId}/comments
 				.path(CommentResource.class)	//As `CommentResouce` is mapped to `/` path, so no use-case in this scenario
 				.resolveTemplate("messageId", String.valueOf(msg.getId()))	//Replace the `messageId` with actual value
 				.build()
